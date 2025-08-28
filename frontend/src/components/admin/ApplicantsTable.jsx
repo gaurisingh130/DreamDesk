@@ -7,14 +7,14 @@ import { toast } from 'sonner';
 import axios from 'axios';
 
 const shortListingStatus = ["Accepted", "Rejected"];
-const backendUrl = import.meta.env.VITE_APPLICATION_API_END_POINT;
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const ApplicantsTable = () => {
   const { applicants } = useSelector(store => store.application);
 
   const statusHandler = async (status , id)=>{
     try{
-      const res = await axios.post(backendUrl + `/status/${id}/update` , { status }, { withCredentials: true });
+      const res = await axios.post(backendUrl + `/api/v1/application/status/${id}/update` , { status }, { withCredentials: true });
       if(res.data.success){
         toast.success(res.data.message);
       }

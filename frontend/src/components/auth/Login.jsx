@@ -27,13 +27,13 @@ const Login = () => {
     const changeEventHandler = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value });
     }
-    const backendUrl = import.meta.env.VITE_USER_API_END_POINT;
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
             dispatch(setLoading(true));
-            const res = await axios.post(backendUrl + `/login`, input, {
+            const res = await axios.post(backendUrl + `/api/v1/user/login`, input, {
                 headers: { "Content-Type": "application/json" },
                 withCredentials: true
             });

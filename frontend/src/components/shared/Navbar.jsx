@@ -15,10 +15,10 @@ const Navbar = () => {
     const { user } = useSelector(store => store.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-const backendUrl = import.meta.env.VITE_USER_API_END_POINT;
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
     const logoutHandler = async () => {
         try {
-            const res = await axios.get(backendUrl + `/logout`, { withCredentials: true });
+            const res = await axios.get(backendUrl + `/api/v1/user/logout`, { withCredentials: true });
             if (res.data.success) {
                 dispatch(setUser(null));
                 navigate('/');

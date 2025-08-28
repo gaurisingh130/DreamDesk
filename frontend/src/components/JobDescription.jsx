@@ -9,8 +9,7 @@ import { toast } from 'sonner';
 import { motion } from 'framer-motion';
 
 const JobDescription = () => {
-  const backendUrl = import.meta.env.VITE_APPLICATION_API_END_POINT;
-  const backendUrl1 = import.meta.env.VITE_JOB_API_END_POINT;
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const params = useParams();
   const jobId = params.id;
   const dispatch = useDispatch();
@@ -23,7 +22,7 @@ const JobDescription = () => {
 
   const applyJobHandler = async () => {
     try {
-      const res = await axios.get(backendUrl + `/apply/${jobId}`, { withCredentials: true });
+      const res = await axios.get(backendUrl + `/api/v1/application/apply/${jobId}`, { withCredentials: true });
       if (res.data.success) {
         setisApplied(true);
         const updateSingleJob  = {...singleJob , applications : [...singleJob.applications , {applicant:user?._id}]};
@@ -39,7 +38,7 @@ const JobDescription = () => {
   useEffect(() => {
     const fetchSingleJob = async () => {
       try {
-        const res = await axios.get(backendUrl1 + `/get/${jobId}`, { withCredentials: true });
+        const res = await axios.get(backendUrl + `/api/v1/job/get/${jobId}`, { withCredentials: true });
         if (res.data.success) {
           dispatch(setSingleJob(res.data.job));
           setisApplied(res.data.job.applications.some(application=>application.applicant===user?._id))

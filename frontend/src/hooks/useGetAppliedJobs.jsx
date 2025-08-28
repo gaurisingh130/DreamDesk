@@ -5,11 +5,11 @@ import { setAllAppliedJobs } from "../redux/jobSlice";
 
 const useGetAppliedJobs = ()=>{
     const dispatch = useDispatch();
-    const backendUrl = import.meta.env.VITE_APPLICATION_API_END_POINT;
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
     useEffect(()=>{
         const fetchAppliedJobs = async ()=>{
             try{
-                const res = await axios.get(backendUrl + `/get` , {withCredentials : true});
+                const res = await axios.get(backendUrl + `/api/v1/application/get` , {withCredentials : true});
                 if(res.data.success){
                     dispatch(setAllAppliedJobs(res.data.application));
                 }

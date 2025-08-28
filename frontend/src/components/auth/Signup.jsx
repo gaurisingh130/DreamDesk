@@ -22,7 +22,7 @@ const Signup = () => {
         role: "",
         file: ""
     });
-    const backendUrl = import.meta.env.VITE_USER_API_END_POINT;
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
     console.log(backendUrl);
     
     const { loading, user } = useSelector(store => store.auth);
@@ -44,7 +44,7 @@ const Signup = () => {
 
         try {
             dispatch(setLoading(true));
-            const res = await axios.post(backendUrl + `/register`, formData, {
+            const res = await axios.post(backendUrl + `/api/v1/user/register`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
                 withCredentials: true
             });

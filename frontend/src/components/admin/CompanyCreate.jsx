@@ -10,7 +10,7 @@ import axios from 'axios'
 import { setSingleCompany } from '../../redux/companySlice'
 import Footer from '../Footer'
 
-const backendUrl = import.meta.env.VITE_COMPANY_API_END_POINT;
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 const CompanyCreate = () => {
     const navigate = useNavigate()
     const [companyName, setCompanyName] = useState('')
@@ -19,7 +19,7 @@ const CompanyCreate = () => {
     const registerNewCompany = async () => {
         try {
             const res = await axios.post(backendUrl + 
-                `/register`,
+                `/api/v1/company/register`,
                 { companyName },
                 {
                     headers: { 'Content-Type': 'application/json' },

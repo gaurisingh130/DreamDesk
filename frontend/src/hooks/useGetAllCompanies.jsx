@@ -5,11 +5,11 @@ import {setCompanies} from '../redux/companySlice.js'
 
 const useGetAllCompanies = () => {
   const dispatch = useDispatch();
-  const backendUrl = import.meta.env.VITE_COMPANY_API_END_POINT;
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   useEffect(() => {
     const fetchCompanies = async () => {
       try {
-        const res = await axios.get( backendUrl + `/get`, { withCredentials: true });
+        const res = await axios.get( backendUrl + `/api/v1/company/get`, { withCredentials: true });
         if (res.data.success) {
           dispatch(setCompanies(res.data.companies));
         }

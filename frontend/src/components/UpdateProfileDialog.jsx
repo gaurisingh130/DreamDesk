@@ -12,7 +12,7 @@ import { setUser } from '../redux/authSlice'
 import { motion } from 'framer-motion'
 
 const UpdateProfileDialog = ({ open, setOpen }) => {
-    const backendUrl = import.meta.env.VITE_USER_API_END_POINT;
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
     const [loading, setLoading] = useState(false);
     const { user } = useSelector(store => store.auth);
     const [input, setInput] = useState({
@@ -48,7 +48,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
         }
         try {
             setLoading(true);
-            const res = await axios.post(backendUrl + `/profile/update`, formData, {
+            const res = await axios.post(backendUrl + `/api/v1/user/profile/update`, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
                 withCredentials: true
             });

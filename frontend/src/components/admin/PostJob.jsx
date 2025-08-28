@@ -35,13 +35,13 @@ const PostJob = () => {
         const selectedCompany = companies.find((company) => company.name.toLowerCase() === value)
         setInput({ ...input, companyId: selectedCompany._id })
     }
-    const backendUrl = import.meta.env.VITE_JOB_API_END_POINT;
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
     const submitHandler = async (e) => {
         e.preventDefault()
         try {
             setLoading(true)
-            const res = await axios.post( backendUrl + `/post`, input, {
+            const res = await axios.post( backendUrl + `/api/v1/job/post`, input, {
                 headers: { 'Content-Type': 'application/json' },
                 withCredentials: true
             })

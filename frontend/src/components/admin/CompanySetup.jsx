@@ -36,7 +36,7 @@ const CompanySetup = () => {
         const file = e.target.files?.[0]
         setInput({ ...input, file })
     }
-    const backendUrl = import.meta.env.VITE_COMPANY_API_END_POINT;
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
     const submitHandler = async (e) => {
         e.preventDefault()
         const formData = new FormData()
@@ -48,7 +48,7 @@ const CompanySetup = () => {
 
         try {
             setLoading(true)
-            const res = await axios.put(backendUrl + `/update/${params.id}`, formData, {
+            const res = await axios.put(backendUrl + `/api/v1/company/update/${params.id}`, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
                 withCredentials: true
             })

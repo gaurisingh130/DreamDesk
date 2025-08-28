@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setAllApplicants } from '../../redux/applicationSlice'
 import Footer from '../Footer'
   
-const backendUrl = import.meta.env.VITE_APPLICATION_API_END_POINT;
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 const Applicants = () => {
   const params = useParams();
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const Applicants = () => {
     const fetchAllApplicants = async () => {
       try {
         const res = await axios.get(backendUrl + 
-          `/${params.id}/applicants`,
+          `/api/v1/application/${params.id}/applicants`,
           { withCredentials: true }
         );
         if (res.data.success) {
